@@ -3,7 +3,8 @@ import "./index.css";
 import { Todo } from "./components/Todo";
 import { ChangeEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-type TodoType = { id: string; name: string; isCompleted: boolean };
+import { TodoType } from "./types/TodoType";
+
 function App() {
   const [todoList, setTodoList] = useState<TodoType[]>([]);
   const [newToDoName, setNewTodoName] = useState<string>("");
