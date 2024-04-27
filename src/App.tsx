@@ -1,15 +1,13 @@
 import { Button, TextField } from "@mui/material";
 import "./index.css";
 import { Todo } from "./components/Todo";
-import { SetStateAction, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 type TodoType = { id: string; name: string; isCompleted: boolean };
 function App() {
   const [todoList, setTodoList] = useState<TodoType[]>([]);
   const [newToDoName, setNewTodoName] = useState<string>("");
-  const onNewTodoChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
+  const onNewTodoChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTodoName(e.target.value);
   };
   const onAddClick = () => {
