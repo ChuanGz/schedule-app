@@ -1,13 +1,16 @@
 /* eslint-disable no-debugger */
 import "./index.css";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TodoType } from "./types/TodoType";
 import { AddNewToDo } from "./components/AddNewToDo";
 import { TodoList } from "./components/TodoList";
 
 function App() {
-  const [todoList, setTodoList] = useState<TodoType[]>([]);
+  const [todoList, setTodoList] = useState<TodoType[]>(() => {
+    const savedTodos = localStorage.getItem("todo-list");
+    return JSON.parse(savedTodos ?? "");
+  });
   const [newToDoName, setNewTodoName] = useState<string>("");
   const onNewTodoChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewTodoName(e.target.value);
@@ -31,7 +34,10 @@ function App() {
       });
     });
   };
-
+  useEffect(() => {
+    const todoListString = JSON.stringify(todoList);
+    localStorage.setItem("todo-list", todoListString);
+  }, [todoList]);
   return (
     <>
       <p>This is todo app</p>
