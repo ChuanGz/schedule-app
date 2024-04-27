@@ -1,7 +1,7 @@
 import { TodoItem } from "./TodoItem";
-import { TodoListProps } from "../types/TodoListProps";
+import { TodoType } from "../types/TodoType";
 
-export const TodoList = ({ todoList }: TodoListProps) => {
+export const TodoList = ({ todoList }: { todoList: TodoType[] }) => {
   return (
     <div>
       {todoList.map((todo) => {
