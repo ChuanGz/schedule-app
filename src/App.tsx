@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import "./index.css";
-import { Todo } from "./components/Todo";
+import { TodoItem } from "./components/TodoItem";
 import { ChangeEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { TodoType } from "./types/TodoType";
@@ -12,18 +12,18 @@ function App() {
     setNewTodoName(e.target.value);
   };
   const onAddClick = () => {
-    const newTodoObject: TodoType = {
+    const newTodoItem: TodoType = {
       id: uuidv4(),
       name: newToDoName,
       isCompleted: false,
     };
-    setTodoList([newTodoObject, ...todoList]);
+    setTodoList([newTodoItem, ...todoList]);
     setNewTodoName("");
   };
 
   return (
     <>
-      <p className="read-the-docs">This is todo app</p>
+      <p>This is todo app</p>
       <div>
         <TextField
           size="small"
@@ -35,7 +35,7 @@ function App() {
         </Button>
         <div>
           {todoList.map((todo) => {
-            return <Todo name={todo.name}></Todo>;
+            return <TodoItem name={todo.name}></TodoItem>;
           })}
         </div>
       </div>
