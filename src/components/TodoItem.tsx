@@ -1,14 +1,30 @@
 import { Button } from "@mui/material";
 import "../index.css";
 import { TodoIcon } from "./TodoIcon";
-export const TodoItem = (todoItem: { name: string; isCompleted: boolean }) => {
+export const TodoItem = ({
+  todoId,
+  name,
+  isCompleted,
+  updateIsCompleted,
+}: {
+  todoId: string;
+  name: string;
+  isCompleted: boolean;
+  updateIsCompleted: (todoId: string) => void;
+}) => {
   return (
     <Button
       fullWidth
       style={{ justifyContent: "space-between" }}
-      endIcon={<TodoIcon isCompleted={todoItem.isCompleted} />}
+      endIcon={
+        <TodoIcon
+          todoId={todoId}
+          isCompleted={isCompleted}
+          updateIsCompleted={updateIsCompleted}
+        />
+      }
     >
-      {todoItem.name}
+      {name}
     </Button>
   );
 };

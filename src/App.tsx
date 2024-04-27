@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import "./index.css";
 import { ChangeEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
@@ -20,6 +21,16 @@ function App() {
     setTodoList([newTodoItem, ...todoList]);
     setNewTodoName("");
   };
+  const updateIsCompleted = (todoId: string) => {
+    setTodoList((preState) => {
+      return preState.map((todo) => {
+        if (todo.id === todoId) {
+          return { ...todo, isCompleted: !todo.isCompleted };
+        }
+        return todo;
+      });
+    });
+  };
 
   return (
     <>
@@ -29,7 +40,7 @@ function App() {
         onNewTodoChange={onNewTodoChange}
         onAddClick={onAddClick}
       ></AddNewToDo>
-      <TodoList todoList={todoList} />
+      <TodoList todoList={todoList} updateIsCompleted={updateIsCompleted} />
     </>
   );
 }
