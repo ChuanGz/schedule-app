@@ -1,14 +1,14 @@
 import { Button } from "@mui/material";
 import "../index.css";
-import { CheckBoxOutlineBlankOutlined } from "@mui/icons-material";
-export const TodoItem = (name: { name: string }) => {
+import { TodoIcon } from "./TodoIcon";
+export const TodoItem = (todoItem: { name: string; isCompleted: boolean }) => {
   return (
     <Button
       fullWidth
       style={{ justifyContent: "space-between" }}
-      endIcon={<CheckBoxOutlineBlankOutlined />}
+      endIcon={<TodoIcon isCompleted={todoItem.isCompleted} />}
     >
-      {name.name}
+      {todoItem.name}
     </Button>
   );
 };

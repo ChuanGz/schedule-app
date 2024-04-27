@@ -5,7 +5,9 @@ export const TodoList = ({ todoList }: { todoList: TodoType[] }) => {
   return (
     <div>
       {todoList.map((todo) => {
-        return <TodoItem name={todo.name}></TodoItem>;
+        return (
+          <TodoItem name={todo.name} isCompleted={todo.isCompleted}></TodoItem>
+        );
       })}
     </div>
   );
